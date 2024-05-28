@@ -13,10 +13,10 @@ import javax.servlet.http.HttpSession;
 
 import dao.AccountsDAO;
 import model.Account;
+import model.GetMutterListLogic;
 import model.Login;
 import model.Mutter;
 import model.PostMutterLogic;
-import model.getMutterListLogic;
 
 /**
  * Servlet implementation class Main
@@ -39,9 +39,9 @@ public class Main extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		getMutterListLogic getMutterListLogic = new getMutterListLogic();
+		GetMutterListLogic getMutterListLogic = new GetMutterListLogic();
 		List<Mutter> mutterList = getMutterListLogic.execute();
-		request.setAttribute("MutterList", mutterList);
+		request.setAttribute("mutterList", mutterList);
 		
 		HttpSession session = request.getSession();
 		Login loginUser = (Login)session.getAttribute("loginUser");
@@ -77,11 +77,11 @@ public class Main extends HttpServlet {
 			request.setAttribute("errorMsg", "つぶやきが入力されていません");
 		}
 		
-		getMutterListLogic getMutterListLogic = new getMutterListLogic();
+		GetMutterListLogic getMutterListLogic = new GetMutterListLogic();
 		List<Mutter> mutterList = getMutterListLogic.execute();
 		request.setAttribute("mutterList", mutterList);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/isp/main.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/main.jsp");
 		dispatcher.forward(request, response);
 	}
 
