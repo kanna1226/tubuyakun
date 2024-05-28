@@ -18,8 +18,13 @@
 	<input type="text" name="text">
 	<input type="submit" value="つぶやく">
 	</form>
+	<c:if test="${not empty errorMsg}">
+		<p><c:out value="${errorMsg}" /></p>
+	</c:if>
 	<c:forEach var="mutter" items="${mutterList}">
-		<p></p>
+		<p><c:out value="${mutter.userId}" />:
+			<c:out value="${mutter.text}" /> - 
+			<c:out value="${mutter.timestamp}" /></p>
 	</c:forEach>
 </body>
 </html>
