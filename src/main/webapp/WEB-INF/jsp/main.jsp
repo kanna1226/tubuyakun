@@ -24,7 +24,7 @@
 	<c:forEach var="mutter" items="${mutterList}">
 		<p><c:out value="${mutter.userId}" />:
 			<c:out value="${mutter.text}" /> - 
-			<c:out value="${mutter.timestamp}" /></p>
+			<c:out value="${mutter.date}" /></p>
 	</c:forEach>
 </body>
 </html>

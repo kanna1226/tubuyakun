@@ -8,6 +8,8 @@ public class AccountsDAOTest {
 	public static void main(String[] args) {
 		testFindByLoginOK();
 		testFindByLoginNG();
+		testRegisterAccountOK();
+		
 	}
 	
 	public static void testFindByLoginOK() {
@@ -32,6 +34,16 @@ public class AccountsDAOTest {
 			System.out.println("testFindByLoginNG:成功しました");
 		} else {
 			System.out.println("testfindByLoginNG:失敗しました");
+		}
+	}
+	public static void testRegisterAccountOK() {
+		Account account = new Account("megumi", "5678", "megumi.ayabe@miyabilink.jp", "綾部　めぐみ");
+		AccountsDAO dao = new AccountsDAO();
+		boolean result = dao.registerAccount(account);
+		if (result) {
+			System.out.println("testResultAccountOK:成功しました");
+		} else {
+			System.out.println("testResultAccountOK:失敗しました");
 		}
 	}
 }

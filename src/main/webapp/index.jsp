@@ -13,5 +13,8 @@
 	<p>パスワード:<input type="password" name="pass"></p>
 	<input type="submit" value="ログイン">
 	</form>
+	<form action="RegisterAccount" method="get">
+        <input type="submit" value="ユーザー登録">
+    </form>
 </body>
 </html>

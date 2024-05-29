@@ -25,9 +25,8 @@ public class MuttersDAO {
 			throw new IllegalStateException("JDBCドライバを読み込めませんでした");
 		}
 		
-		try (Connection conn = DriverManager.getConnection("JDBC_URL, DB_USER, DB_PASS")) {
-			
-			String sql = "SELECT ID,USER_ID, NAME, TEXT, TIMESTAMP FROM MUTTERS ORDER BY ID DESC";
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS))  {
+			String sql = "SELECT ID,USER_ID, NAME, TEXT, DATE FROM MUTTERS ORDER BY ID DESC";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			ResultSet rs = pStmt.executeQuery();
@@ -37,8 +36,8 @@ public class MuttersDAO {
 				String userId = rs.getString("USER_ID");
 				String userName = rs.getString("NAME");
 				String text = rs.getString("TEXT");
-				Timestamp timestamp = rs.getTimestamp("DATE");
-				Mutter mutter = new Mutter(id,userId, userName, text, timestamp);
+				Timestamp date = rs.getTimestamp("DATE");
+				Mutter mutter = new Mutter(id, userId, userName, text, date);
 				mutterList.add(mutter);
 			}
 		} catch (SQLException e) {
@@ -62,7 +61,7 @@ public class MuttersDAO {
 			pStmt.setString(1, mutter.getUserId());
 			pStmt.setString(2, mutter.getUserName());
 			pStmt.setString(3, mutter.getText());
-			pStmt.setTimestamp(4, mutter.getTimestamp());
+			pStmt.setTimestamp(4, mutter.getDate());
 			
 			int result = pStmt.executeUpdate();
 			if (result != 1) {
